@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7fa9ce1a-a3fc-4dcd-8233-6fa2666e5ae4" name="Changes" comment="Fixed sine, cosine, and tangent functions" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;jeffbruma&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/jeffbruma/stemutility12025&quot;,
+    &quot;accountId&quot;: &quot;7e772c70-af96-4e22-b731-9fc8062a90e2&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2ztAi1rmCs6o2VRdBO6LIYJ6tLO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.BasicArithmeticTest.abs returns the absolute value of a number.executor": "Run",
+    "Gradle.BasicArithmeticTest.executor": "Run",
+    "Gradle.BasicArithmeticTest.nextUp returns the smallest increment greater than the input.executor": "Run",
+    "Gradle.BasicArithmeticTest.normalized cleans up trailing zeroes and corrects scale.executor": "Run",
+    "Gradle.BasicArithmeticTest.print.executor": "Run",
+    "Gradle.BasicArithmeticTest.rationalize attempts to find a rational number equivalent.executor": "Run",
+    "Gradle.BasicArithmeticTest.rationalize performance.executor": "Run",
+    "Gradle.BasicArithmeticTest.reciprocal returns one divided by the BigDecimal.executor": "Run",
+    "Gradle.BasicArithmeticTest.reciprocal throws when number is zero.executor": "Run",
+    "Gradle.Build stemutility12025.executor": "Run",
+    "Gradle.CosineTest.cos returns with correct sign.executor": "Run",
+    "Gradle.CosineTest.executor": "Run",
+    "Gradle.ExpLimitTest.executor": "Run",
+    "Gradle.ExpLimitTest.expLimit.executor": "Run",
+    "Gradle.ExpLimitTest.expOldLimit.executor": "Run",
+    "Gradle.ExpLimitTest.expSmallTaylorLimit.executor": "Run",
+    "Gradle.ExpPerformanceTest.executor": "Run",
+    "Gradle.ExpPerformanceTest.exp performance.executor": "Run",
+    "Gradle.ExpPerformanceTest.expNew performance.executor": "Run",
+    "Gradle.ExpPerformanceTest.expOld performance.executor": "Run",
+    "Gradle.ExponentialLimitTest.exp limit.executor": "Run",
+    "Gradle.ExponentialLimitTest.exp performance.executor": "Run",
+    "Gradle.ExponentialLimitTest.exp throws above limit v1.executor": "Run",
+    "Gradle.ExponentialLimitTest.exp throws above limit v2.executor": "Run",
+    "Gradle.ExponentialLimitTest.exp throws above limit v3.executor": "Run",
+    "Gradle.ExponentialLimitTest.exp throws above limit.executor": "Run",
+    "Gradle.ExponentialLimitTest.limit.executor": "Run",
+    "Gradle.ExponentialTest.128 significant figure calculation.executor": "Run",
+    "Gradle.ExponentialTest.32 significant figure calculation.executor": "Run",
+    "Gradle.ExponentialTest.32 significant-figure calculation.executor": "Run",
+    "Gradle.ExponentialTest.64 significant figure calculation.executor": "Run",
+    "Gradle.ExponentialTest.64 significant-figure calculation.executor": "Run",
+    "Gradle.ExponentialTest.basic exponentiation results.executor": "Run",
+    "Gradle.ExponentialTest.basic exponentiation.executor": "Run",
+    "Gradle.ExponentialTest.executor": "Run",
+    "Gradle.ExponentialTest.exp limit.executor": "Run",
+    "Gradle.ExponentialTest.exp performance.executor": "Run",
+    "Gradle.ExponentialTest.exp returns values consistent with a reference high-precision calculator.executor": "Run",
+    "Gradle.ExponentialTest.exp throws above limit.executor": "Run",
+    "Gradle.ExponentialTest.exp throws at argument limit.executor": "Run",
+    "Gradle.ExponentialTest.exp throws when math context is unlimited.executor": "Run",
+    "Gradle.ExponentialTest.find limit of precision.executor": "Run",
+    "Gradle.ExponentialTest.findExpLimit.executor": "Run",
+    "Gradle.ExponentialTest.high-precision calculation.executor": "Run",
+    "Gradle.ExponentialTest.isolationTest.executor": "Run",
+    "Gradle.ExponentialTest.min input.executor": "Run",
+    "Gradle.ExtensionPropertiesTest.cubed returns the third power of a number.executor": "Run",
+    "Gradle.ExtensionPropertiesTest.executor": "Run",
+    "Gradle.ExtensionPropertiesTest.sign returns a BigDecimal representation of the signum of a number.executor": "Run",
+    "Gradle.ExtensionPropertiesTest.squared returns the second power of a number.executor": "Run",
+    "Gradle.ExtensionPropertiesTest.squared returns the square of a number.executor": "Run",
+    "Gradle.HyperbolicFunctionsLimitTest.coth limit.executor": "Run",
+    "Gradle.HyperbolicFunctionsLimitTest.csch limit.executor": "Run",
+    "Gradle.HyperbolicFunctionsLimitTest.sech limit.executor": "Run",
+    "Gradle.HyperbolicFunctionsLimitTest.sinh limit.executor": "Run",
+    "Gradle.HyperbolicFunctionsLimitTest.tanh limit.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.32 significant-figure cosh.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.32 significant-figure coth.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.32 significant-figure csch.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.32 significant-figure sech.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.32 significant-figure sinh.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.32 significant-figure tanh.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.64 significant-figure cosh.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.64 significant-figure coth.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.64 significant-figure csch.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.64 significant-figure sech.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.64 significant-figure sinh.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.64 significant-figure tanh.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.cosh performance.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.cosh returns values consistent with reference high-precision calculator.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.coth performance.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.coth returns values consistent with reference high-precision calculator.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.csch performance.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.csch returns values consistent with reference high-precision calculator.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.isolationTest.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.sech performance.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.sech returns values consistent with reference high-precision calculator.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.sinh performance.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.sinh returns values consistent with reference high-precision calculator.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.tanh performance.executor": "Run",
+    "Gradle.HyperbolicFunctionsTest.tanh returns values consistent with reference high-precision calculator.executor": "Run",
+    "Gradle.HyperbolicIdentitiesTest.executor": "Run",
+    "Gradle.HyperbolicIdentitiesTest.tanh and artanh are inverses of each other.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.32 significant-figure arcosh.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.32 significant-figure arcsch.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.32 significant-figure arsinh.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.32 significant-figure artanh.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.64 significant-figure arcosh.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.64 significant-figure arcsch.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.64 significant-figure arsinh.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.64 significant-figure artanh.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.arcosh performance.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.arcosh throws when input is less than one.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.arcsch performance.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.arcsch returns values consistent with reference high-precision calculator.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.arcsch throws when input is zero.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.arsinh performance.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.artanh performance.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.artanh throws when input is lesser than or equal to -1 or greater than or equal to 1.executor": "Run",
+    "Gradle.InverseHyperbolicFunctionsTest.executor": "Run",
+    "Gradle.InverseTrigonometricFunctionsTest.executor": "Run",
+    "Gradle.IsolatedTests.isolatedTest.executor": "Run",
+    "Gradle.LogarithmTest.32 significant-figure base-ten logarithm.executor": "Run",
+    "Gradle.LogarithmTest.32 significant-figure base-two logarithm.executor": "Run",
+    "Gradle.LogarithmTest.32 significant-figure logarithm.executor": "Run",
+    "Gradle.LogarithmTest.32 significant-figure natural logarithm.executor": "Run",
+    "Gradle.LogarithmTest.64 significant-figure base-ten logarithm.executor": "Run",
+    "Gradle.LogarithmTest.64 significant-figure base-two logarithm.executor": "Run",
+    "Gradle.LogarithmTest.64 significant-figure natural logarithm.executor": "Run",
+    "Gradle.LogarithmTest.executor": "Run",
+    "Gradle.LogarithmTest.log of a negative number throws.executor": "Run",
+    "Gradle.LogarithmTest.log of zero throws.executor": "Run",
+    "Gradle.LogarithmTest.log performance.executor": "Run",
+    "Gradle.LogarithmTest.log returns values consistent with reference high-precision calculator.executor": "Run",
+    "Gradle.PowFunctionTests.executor": "Run",
+    "Gradle.PowFunctionTests.test.executor": "Run",
+    "Gradle.PowFunctionTests.testFractionalExponents.executor": "Run",
+    "Gradle.PowFunctionTests.testNegativeBaseOddRoot.executor": "Run",
+    "Gradle.PowFunctionTests.testZeroEdgeCases.executor": "Run",
+    "Gradle.PowerTest.32 significant-figure basic exponentiation.executor": "Run",
+    "Gradle.PowerTest.64 significant-figure basic exponentiation.executor": "Run",
+    "Gradle.PowerTest.basic exponentiation.executor": "Run",
+    "Gradle.PowerTest.executor": "Run",
+    "Gradle.PowerTest.isolation test.executor": "Run",
+    "Gradle.PowerTest.isolationTest.executor": "Run",
+    "Gradle.PowerTest.pow performance.executor": "Run",
+    "Gradle.PowerTest.pow performs exponentiation.executor": "Run",
+    "Gradle.PowerTest.pow returns BigDecimal raised to an exponent.executor": "Run",
+    "Gradle.PowerTest.pow throws on negative base and fractional exponent.executor": "Run",
+    "Gradle.PowerTest.pow throws on negative base and irrational exponent.executor": "Run",
+    "Gradle.PowerTest.pow throws on negative base and irrationoal exponent.executor": "Run",
+    "Gradle.PowerTest.pow throws on negative base and rational exponent with even denominator.executor": "Run",
+    "Gradle.PowerTest.pow throws on zero base and negative exponent.executor": "Run",
+    "Gradle.PowerTest.pow throws one negative base and rational exponent with even denominator.executor": "Run",
+    "Gradle.PowerTest.rationalize performance.executor": "Run",
+    "Gradle.PowerTest.sqr limit.executor": "Run",
+    "Gradle.PowerTest.sqr performance.executor": "Run",
+    "Gradle.PowerTest.sqr returns squared BigDecimal.executor": "Run",
+    "Gradle.PredicatesTest.executor": "Run",
+    "Gradle.RootTest.32 significant-figure cube-rooting.executor": "Run",
+    "Gradle.RootTest.32 significant-figure rooting.executor": "Run",
+    "Gradle.RootTest.32 significant-figure square-rooting.executor": "Run",
+    "Gradle.RootTest.64 significant-figure cube-rooting.executor": "Run",
+    "Gradle.RootTest.64 significant-figure rooting.executor": "Run",
+    "Gradle.RootTest.64 significant-figure square-rooting.executor": "Run",
+    "Gradle.RootTest.executor": "Run",
+    "Gradle.RootTest.root returns nth root of a BigDecimal.executor": "Run",
+    "Gradle.RootTest.rootLimit.executor": "Run",
+    "Gradle.RootTest.sqrt returns square-root of a BigDecimal.executor": "Run",
+    "Gradle.SineTest.executor": "Run",
+    "Gradle.TangentTest.32 significant-figure tan.executor": "Run",
+    "Gradle.TangentTest.64 significant-figure tan.executor": "Run",
+    "Gradle.TangentTest.executor": "Run",
+    "Gradle.TangentTest.tan performance.executor": "Run",
+    "Gradle.TangentTest.tan returns 0 at 0 and multiples of pi.executor": "Run",
+    "Gradle.TangentTest.tan returns 0 at multiples of 0 and 180 degrees.executor": "Run",
+    "Gradle.TangentTest.tan returns 1 or -1 at odd multiples of 45 degrees.executor": "Run",
+    "Gradle.TangentTest.tan returns with correct sign.executor": "Run",
+    "Gradle.TangentTest.tan throws at half pi or three-halves pi.executor": "Run",
+    "Gradle.TangentTest.tan throws at odd multiples of half pi.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.32 significant-figure cos.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.32 significant-figure sec.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.32 significant-figure sin.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.64 significant-figure cos.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.64 significant-figure sin.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.cos performance.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.cos returns 0 at odd multiples of half pi.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.cos returns 1 or -1 at 0 or multiples of pi.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.cos returns values consistent with reference high-precision calculator.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.cos returns with correct sign.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.sin performance.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.sin returns 0 at 0 or multiples of pi.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.sin returns 0 at multiples of 0 or 180 degrees.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.sin returns 1 or -1 at odd multiples of half pi.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.sin returns values consistent with reference high-precision calculator.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.sin returns with correct sign.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.tan returns 0 at multiples of 0 and 180 degrees.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.tan returns 1 or -1 at odd multiples of 45 degrees.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.tan returns with correct sign.executor": "Run",
+    "Gradle.TrigonometricFunctionsTest.tan throws at half pi or three-halves pi.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Projects/IdeaProjects/stemutility12025",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RunManager" selected="Gradle.TrigonometricFunctionsTest.32 significant-figure sec">
+    <configuration name="CosineTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.CosineTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="SineTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.SineTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="TangentTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.TangentTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="TrigonometricFunctionsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.TrigonometricFunctionsTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="TrigonometricFunctionsTest.32 significant-figure sec" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.TrigonometricFunctionsTest.32 significant-figure sec&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.TrigonometricFunctionsTest.32 significant-figure sec" />
+        <item itemvalue="Gradle.TrigonometricFunctionsTest" />
+        <item itemvalue="Gradle.TangentTest" />
+        <item itemvalue="Gradle.CosineTest" />
+        <item itemvalue="Gradle.SineTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7fa9ce1a-a3fc-4dcd-8233-6fa2666e5ae4" name="Changes" comment="" />
+      <created>1752540118433</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1752540118433</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Re-evaluation of functions">
+      <option name="closed" value="true" />
+      <created>1753381726675</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1753381726675</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Re-evaluation of functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-evaluation of functions" />
+  </component>
+</project>
