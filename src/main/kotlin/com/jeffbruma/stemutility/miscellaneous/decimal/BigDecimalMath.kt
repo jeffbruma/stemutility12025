@@ -601,8 +601,8 @@ fun arcoth(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean 
 fun sin(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = true): BigDecimal {
     if (x.isNegative()) return -sin(-x, mathContext, rounding)
 
-    val internalMathContext = MathContext(mathContext.precision + 3, mathContext.roundingMode)
-    val tolerance = BigDecimal.ONE.movePointLeft(internalMathContext.precision - 2)
+    val internalMathContext = MathContext(mathContext.precision + 4, mathContext.roundingMode)
+    val tolerance = BigDecimal.ONE.movePointLeft(internalMathContext.precision - 3)
 
     val pi = getConstant("pi", internalMathContext)
     val quarterPi = pi.multiply(BigDecimal(0.25))

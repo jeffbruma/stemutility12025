@@ -1863,7 +1863,7 @@ class TangentTest {
 }
 
 class TrigonometricFunctionsTest {
-    val pi = getConstant("pi", mc64, 3)
+    val pi = getConstant("pi", mc64, 2)
     val twoPi: BigDecimal = pi.multiply(BigDecimal.TWO)
     val halfPi: BigDecimal = pi.divide(BigDecimal.TWO)
     val threeHalvesPi: BigDecimal = halfPi.multiply(BigDecimal("3"))
