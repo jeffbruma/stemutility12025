@@ -645,8 +645,6 @@ private fun sineCore(angle: BigDecimal, mathContext: MathContext): BigDecimal = 
 fun cos(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = true): BigDecimal {
     if (x.isNegative()) return cos(-x, mathContext, rounding)
 
-    println("x = $x")
-
     val internalMathContext = MathContext(mathContext.precision + 2, mathContext.roundingMode)
     val tolerance = BigDecimal.ONE.movePointLeft(internalMathContext.precision - 3)
 
@@ -674,10 +672,8 @@ fun cos(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = t
     if (relativeEquals(absBaseAngle, halfPi, tolerance) || relativeEquals(absBaseAngle, threeHalvesPi, tolerance)) return BigDecimal.ZERO
 
     val result = if (absBaseAngle <= quarterPi) {
-        println("cosineCore")
         cosineCore(absBaseAngle, internalMathContext).multiply(signBaseAngle)
     } else {
-        println("sineCore")
         sineCore(halfPi.subtract(absBaseAngle), internalMathContext).multiply(signBaseAngle)
     }
 
