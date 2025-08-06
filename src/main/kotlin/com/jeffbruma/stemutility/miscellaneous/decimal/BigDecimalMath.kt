@@ -12,12 +12,13 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
 import java.math.RoundingMode
-import kotlin.math.round
+import kotlin.math.max
 import kotlin.random.Random
 import kotlin.system.measureTimeMillis
 
 const val MAX_ROOT_DEGREE: Int = 100
 const val MAX_EXPONENT: Int = 1_000
+const val MAX_PRECISION = 1_024
 
 val mathCtx = MathContext(32, RoundingMode.HALF_UP)
 
@@ -293,7 +294,7 @@ fun exp(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = t
     val internalMathContext = MathContext(internalPrecision, mathContext.roundingMode)
 
     if (x.isZero()) return BigDecimal.ONE
-    if (x.isOne()) return getConstant("e", mathContext)
+    if (x.isOne()) return getConstant("e", mathContext.precision)
     if (x.isNegative()) {
         val result = exp(-x, internalMathContext, false).reciprocal(mathContext)
         return if (rounding) result.roundAndStrip(mathContext) else result
@@ -326,7 +327,8 @@ fun exp(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = t
 fun logNew(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = true): BigDecimal {
     if (x.isNonPositive()) throw ArithmeticException("log(x) is undefined for x <= 0")
     if (x.isOne()) return BigDecimal.ZERO
-    if (x == BigDecimal.TWO) return getConstant("log_2", mathContext)
+
+    if (x == BigDecimal.TWO) return getConstant("log_2", mathContext.precision)
 
     val useAGM = mathContext.precision >= 32 || x.scale() <= -50 || x.precision() >= 50
     val near1 = abs(x.subtract(BigDecimal.ONE)) < BigDecimal("0.01")
@@ -344,10 +346,11 @@ fun log(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = t
     if (x.isOne()) return BigDecimal.ZERO
     if (x == BigDecimal.TWO) return LOG_2.round(mathContext)
 
-    val internalMathContext = MathContext(mathContext.precision + 2, mathContext.roundingMode)
+    val precision = max(x.precision(), mathContext.precision) + 2
+    val internalMathContext = MathContext(precision, mathContext.roundingMode)
     val tolerance = BigDecimal.ONE.movePointLeft(internalMathContext.precision)
 
-    val ln2 = getConstant("ln2", internalMathContext)
+    val ln2 = getConstant("ln2", precision)
 
     // Reduce x into [1, 2)
     var n = 0
@@ -395,8 +398,8 @@ private fun logAGM(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: 
     if (x.isOne()) return BigDecimal.ZERO
 
     val internalMathContext = MathContext(mathContext.precision + 5, mathContext.roundingMode)
-    val ln2 = getConstant("ln2", internalMathContext, 2)
-    val pi = getConstant("pi", internalMathContext, 2)
+    val ln2 = getConstant("ln2", internalMathContext.precision + 2)
+    val pi = getConstant("pi", internalMathContext.precision + 2)
 
     // Reduce x into [1, 2)
     var z = x
@@ -598,34 +601,36 @@ fun arcoth(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean 
 
 
 // Trigonometric Functions
+
 fun sin(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = true): BigDecimal {
     if (x.isNegative()) return -sin(-x, mathContext, rounding)
 
-    val internalMathContext = MathContext(mathContext.precision + 4, mathContext.roundingMode)
-    val tolerance = BigDecimal.ONE.movePointLeft(internalMathContext.precision - 3)
+    val internalMathContext = MathContext(mathContext.precision + 2, mathContext.roundingMode)
+    val tolerance = BigDecimal.ONE.movePointLeft(internalMathContext.precision - 2)
 
-    val pi = getConstant("pi", internalMathContext)
+    val pi = getConstant("pi", internalMathContext.precision + 2)
     val quarterPi = pi.multiply(BigDecimal(0.25))
     val halfPi = pi.multiply(BigDecimal(0.5))
-    val threeHalvesPi = pi.multiply(BigDecimal(1.5))
     val twoPi = pi.multiply(BigDecimal.TWO)
 
-    val baseAngle = x.remainder(twoPi, internalMathContext)
+    val baseAngle = x.remainder(twoPi, internalMathContext).apply {
+        when {
+            this < tolerance || relativeEquals(this, twoPi, tolerance) -> BigDecimal.ZERO
+            this > pi -> this.subtract(twoPi)
+            this > halfPi -> this.subtract(pi)
+        }
+    }
+    val signBaseAngle = baseAngle.sign
+    val absBaseAngle = abs(baseAngle)
 
-    if (baseAngle > halfPi) return sin(pi.subtract(baseAngle), mathContext, rounding)
+    if (relativeEquals(absBaseAngle, halfPi, tolerance)) return BigDecimal.ONE.multiply(signBaseAngle)
 
-    if (baseAngle > pi) return -sin(twoPi.subtract(baseAngle), mathContext, rounding)
-    
-    if (relativeEquals(baseAngle, halfPi, tolerance)) return BigDecimal.ONE
+    if (absBaseAngle.remainder(pi, mathContext) < tolerance) return BigDecimal.ZERO
 
-    if (relativeEquals(baseAngle, threeHalvesPi, tolerance)) return -BigDecimal.ONE
-
-    if (baseAngle.remainder(pi, mathContext) < tolerance) return BigDecimal.ZERO
-
-    val result = if (baseAngle <= quarterPi) {
-        sineCore(baseAngle, internalMathContext)
+    val result = if (absBaseAngle <= quarterPi) {
+        sineCore(absBaseAngle, internalMathContext).multiply(signBaseAngle)
     } else {
-        cosineCore(halfPi.subtract(baseAngle), internalMathContext)
+        cosineCore(halfPi.subtract(absBaseAngle), internalMathContext).multiply(signBaseAngle)
     }
     return if (rounding) result.roundAndStrip(mathContext) else result
 }
@@ -640,31 +645,40 @@ private fun sineCore(angle: BigDecimal, mathContext: MathContext): BigDecimal = 
 fun cos(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = true): BigDecimal {
     if (x.isNegative()) return cos(-x, mathContext, rounding)
 
-    val internalMathContext = MathContext(mathContext.precision + 2, mathContext.roundingMode)
-    val tolerance = BigDecimal.ONE.movePointLeft(mathContext.precision - 1)
+    println("x = $x")
 
-    val pi = getConstant("pi", internalMathContext)
+    val internalMathContext = MathContext(mathContext.precision + 2, mathContext.roundingMode)
+    val tolerance = BigDecimal.ONE.movePointLeft(internalMathContext.precision - 3)
+
+    val pi = getConstant("pi", internalMathContext.precision + 2)
     val quarterPi = pi.multiply(BigDecimal(0.25))
     val halfPi = pi.multiply(BigDecimal(0.5))
     val threeHalvesPi = pi.multiply(BigDecimal(1.5))
     val twoPi = pi.multiply(BigDecimal.TWO)
 
-    val baseAngle = x.remainder(twoPi, internalMathContext)
+    val baseAngle = x.remainder(twoPi, internalMathContext).apply {
+        when {
+            this < tolerance || relativeEquals(this, twoPi, tolerance) -> BigDecimal.TEN
+            this > pi -> this.subtract(twoPi)
+            this > halfPi -> this.subtract(pi)
+        }
+    }
 
-    if (baseAngle > halfPi) return -cos(pi.subtract(baseAngle), mathContext, rounding)
+    val signBaseAngle = baseAngle.sign
+    val absBaseAngle = abs(baseAngle)
 
-    if (baseAngle > pi) return -cos(twoPi.subtract(baseAngle), mathContext, rounding)
+    if (absBaseAngle < tolerance) return BigDecimal.ONE
 
-    if (baseAngle < tolerance) return BigDecimal.ONE
+    if (relativeEquals(absBaseAngle, pi, tolerance)) return -BigDecimal.ONE
 
-    if (relativeEquals(baseAngle, pi, tolerance)) return -BigDecimal.ONE
+    if (relativeEquals(absBaseAngle, halfPi, tolerance) || relativeEquals(absBaseAngle, threeHalvesPi, tolerance)) return BigDecimal.ZERO
 
-    if (relativeEquals(baseAngle, halfPi, tolerance) || relativeEquals(baseAngle, threeHalvesPi, tolerance)) return BigDecimal.ZERO
-
-    val result = if (baseAngle <= quarterPi) {
-        cosineCore(baseAngle, internalMathContext)
+    val result = if (absBaseAngle <= quarterPi) {
+        println("cosineCore")
+        cosineCore(absBaseAngle, internalMathContext).multiply(signBaseAngle)
     } else {
-        sineCore(halfPi.subtract(baseAngle), internalMathContext)
+        println("sineCore")
+        sineCore(halfPi.subtract(absBaseAngle), internalMathContext).multiply(signBaseAngle)
     }
 
     return if (rounding) result.roundAndStrip(mathContext) else result
@@ -683,7 +697,7 @@ fun tan(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = t
     val internalMathContext = MathContext(mathContext.precision + 3, mathContext.roundingMode)
     val tolerance = BigDecimal.ONE.movePointLeft(internalMathContext.precision - 2)
 
-    val pi = getConstant("pi", internalMathContext, 1)
+    val pi = getConstant("pi", internalMathContext.precision + 1)
     val quarterPi = pi.multiply(BigDecimal("0.25"))
     val halfPi = pi.multiply(BigDecimal("0.5"))
     val twoPi = pi.multiply(BigDecimal.TWO)
@@ -738,7 +752,7 @@ fun sec(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = t
 fun cot(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = true) : BigDecimal {
     val internalMathContext = MathContext(mathContext.precision + 2, mathContext.roundingMode)
     val tolerance = BigDecimal.ONE.movePointLeft(mathContext.precision - 2)
-    val pi = getConstant("pi", mathContext)
+    val pi = getConstant("pi", mathContext.precision)
     val halfPi = pi.divide(BigDecimal.TWO, mathContext)
     val threeHalvesPi = halfPi.multiply(BigDecimal("3"), mathContext)
     val twoPi = pi.multiply(BigDecimal.TWO, mathContext)
@@ -761,7 +775,7 @@ fun asin(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = 
 
     val internalMathContext = MathContext(mathContext.precision + 1, mathContext.roundingMode)
     val tolerance = BigDecimal.ONE.movePointLeft(internalMathContext.precision)
-    val pi = getConstant("pi", mathContext)
+    val pi = getConstant("pi", mathContext.precision)
     val halfPi = pi.multiply(BigDecimal("0.5"), mathContext)
 
     if (x.isZero()) return BigDecimal.ZERO
@@ -806,7 +820,7 @@ fun acos(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = 
     if (abs(x) > BigDecimal.ONE) throw ArithmeticException("acos domain: |x| <= 1")
 
     val internalMathContext = MathContext(mathContext.precision + 1, mathContext.roundingMode)
-    val pi = getConstant("pi", mathContext)
+    val pi = getConstant("pi", mathContext.precision)
     val halfPi = pi.divide(BigDecimal.TWO, mathContext)
 
     if (x == -BigDecimal.ONE) return pi
@@ -822,7 +836,7 @@ fun atan(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = 
 
     val internalMathContext = MathContext(mathContext.precision * 2, mathContext.roundingMode)
     val tolerance = BigDecimal.ONE.movePointLeft(mathContext.precision)
-    val pi = getConstant("pi", mathContext)
+    val pi = getConstant("pi", mathContext.precision)
     val halfPi = pi.divide(BigDecimal.TWO, mathContext)
 
     x.round(MathContext(4, mathContext.roundingMode))
@@ -860,7 +874,7 @@ fun atan(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = 
  */
 fun atan2(y: BigDecimal, x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = true) : BigDecimal {
     val internalMathContext = MathContext(mathContext.precision * 2, mathContext.roundingMode)
-    val pi = getConstant("pi", mathContext)
+    val pi = getConstant("pi", mathContext.precision)
     val halfPi = pi.divide(BigDecimal.TWO, mathContext)
 
     val result = when {
@@ -879,7 +893,7 @@ fun atan2(y: BigDecimal, x: BigDecimal, mathContext: MathContext = mathCtx, roun
 
 fun acsc(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = true) : BigDecimal {
     val internalMathContext = MathContext(mathContext.precision * 2, mathContext.roundingMode)
-    val pi = getConstant("pi", mathContext)
+    val pi = getConstant("pi", mathContext.precision)
     val halfPi = pi.divide(BigDecimal.TWO, mathContext)
 
     if (abs(x) < BigDecimal.ONE) throw ArithmeticException("acsc(x) is only defined for |x| ≥ 1")
@@ -901,7 +915,7 @@ fun asec(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = 
 fun acot(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = true) : BigDecimal {
     val internalMathContext = MathContext(mathContext.precision * 2, mathContext.roundingMode)
 
-    val halfPi = getConstant("pi", internalMathContext).divide(BigDecimal.TWO, internalMathContext)
+    val halfPi = getConstant("pi", internalMathContext.precision).divide(BigDecimal.TWO, internalMathContext)
     val result = if (x.isZero()) halfPi else atan(x.reciprocal(internalMathContext), internalMathContext)
 
     return if (rounding) result.roundAndStrip(mathContext) else result
@@ -976,9 +990,9 @@ fun compareBigDecimals(x: BigDecimal, y: BigDecimal, mathContext: MathContext = 
     return if (relativeEquals(x, y, tolerance)) 0 else x.compareTo(y)
 }
 
-fun getConstant(name: String, mathContext: MathContext = MathContext(1024), extraPrecision: Int = 0) : BigDecimal {
-    require(extraPrecision >= 0) { "Negative extra precision are not allowed" }
-    val internalMathContext = if (mathContext.precision + extraPrecision < 1024) MathContext(mathContext.precision + extraPrecision, mathContext.roundingMode) else mathContext
+fun getConstant(name: String, precision: Int = MAX_PRECISION) : BigDecimal {
+    require(precision >= 0) { "Negative extra precision are not allowed" }
+    val internalMathContext = if (precision < MAX_PRECISION) MathContext(precision) else MathContext(MAX_PRECISION)
 
     val constant = when (name.lowercase()) {
         "pi" -> PI
@@ -1007,7 +1021,7 @@ fun random(
     y: BigDecimal?,
     inclusiveMin: Boolean = true,
     inclusiveMax: Boolean = true,
-    random: Random = SecureKotlinRandom.Companion.Instance
+    random: Random = SecureKotlinRandom.Instance
 ): BigDecimal {
     val scaleRange = 8..32
     val precisionRange = 8..32

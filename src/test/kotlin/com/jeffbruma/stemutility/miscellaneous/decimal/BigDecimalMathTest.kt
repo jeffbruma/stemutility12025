@@ -17,11 +17,11 @@ import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.measureTime
 
 const val REPETITIONS = 100
-val mc32 = MathContext(32)
-val mc64 = MathContext(64)
+private val mc32 = MathContext(32)
+private val mc64 = MathContext(64)
 
 class ExtensionPropertiesTest {
-    val pi = getConstant("pi", MathContext(34))
+    val pi = getConstant("pi", mc32.precision + 2)
     @Test
     fun `squared returns the second power of a number`() {
         assertEquals(BigDecimal(4), BigDecimal.TWO.squared)
@@ -256,7 +256,7 @@ class PowerTest {
 
     @Test
     fun `32 significant-figure basic exponentiation`() {
-        val pi = getConstant("pi", MathContext(33))
+        val pi = getConstant("pi", mc32.precision + 1)
         val anyBase: BigDecimal = listOf(
             BigDecimal("-4"), BigDecimal("4")
         ).random()
@@ -316,7 +316,7 @@ class PowerTest {
 
     @Test
     fun `64 significant-figure basic exponentiation`() {
-        val pi = getConstant("pi", MathContext(65))
+        val pi = getConstant("pi", mc64.precision + 1)
         val anyBase: BigDecimal = listOf(
             BigDecimal("-4"), BigDecimal("4")
         ).random()
@@ -376,7 +376,7 @@ class PowerTest {
 
     @Test
     fun `pow throws on negative base and irrational exponent`() {
-        val pi = getConstant("pi", MathContext(33))
+        val pi = getConstant("pi", mc32.precision + 1)
         val exception = assertThrows<ArithmeticException> {
             (-BigDecimal.TWO).pow(pi, mc32)
         }
@@ -586,16 +586,14 @@ class RootTest  {
 class ExponentialTest {
     @Test
     fun `basic exponentiation`() {
-        val context = mc32
-
         // exp(0) == 1
         assertEquals(BigDecimal.ONE, exp(BigDecimal.ZERO))
 
         // exp(1) ≈ 2.7182818284590452353602874713527
-        assertEquals(getConstant("e", context), exp(BigDecimal.ONE, context))
+        assertEquals(getConstant("e", mc32.precision), exp(BigDecimal.ONE, mc32))
 
         // exp(-1) ≈ 0.36787944117144232159552377016146
-        assertEquals(getConstant("e").reciprocal(context), exp(-BigDecimal.ONE, context))
+        assertEquals(getConstant("e").reciprocal(mc32), exp(-BigDecimal.ONE, mc32))
     }
 
     @Test
@@ -620,10 +618,10 @@ class ExponentialTest {
         assertEquals(BigDecimal("2.4377697823401583901087137763094E-1737177928"), exp(BigDecimal("-4E+9"), mc32))
 
         // e^ln(2) == 2
-        assertEquals(BigDecimal.TWO, exp(getConstant("log_2", mc32), mc32))
+        assertEquals(BigDecimal.TWO, exp(getConstant("log_2", mc32.precision + 1), mc32))
 
         // e^-ln(2) == 1/2
-        assertEquals(BigDecimal("0.5"), exp(-getConstant("log_2", mc32), mc32))
+        assertEquals(BigDecimal("0.5"), exp(-getConstant("log_2", mc32.precision + 1), mc32))
     }
 
     @Test
@@ -648,10 +646,10 @@ class ExponentialTest {
         assertEquals(BigDecimal("2.437769782340158390108713776309409546273532846510596562554489152e-1737177928"), exp(BigDecimal("-4E+9"), mc64))
 
         // e^ln(2) == 2
-        assertEquals(BigDecimal.TWO, exp(getConstant("log_2", mc64), mc64))
+        assertEquals(BigDecimal.TWO, exp(getConstant("log_2", mc64.precision + 1), mc64))
 
         // e^-ln(2) == 1/2
-        assertEquals(BigDecimal("0.5"), exp(-getConstant("log_2", mc64), mc64))
+        assertEquals(BigDecimal("0.5"), exp(-getConstant("log_2", mc64.precision + 1), mc64))
     }
 
     @Test
@@ -662,7 +660,7 @@ class ExponentialTest {
 
     @Test
     fun `exp throws when math context is unlimited`() {
-        val pi = getConstant("pi", mc32)
+        val pi = getConstant("pi", mc32.precision + 1)
         val exception = assertThrows<IllegalArgumentException> {
             exp(pi, MathContext.UNLIMITED)
         }
@@ -1639,7 +1637,7 @@ class HyperbolicIdentitiesTest {
 }
 
 class SineTest {
-    val pi = getConstant("pi", mc64, 3)
+    val pi = getConstant("pi", mc64.precision + 1)
     val twoPi: BigDecimal = pi.multiply(BigDecimal.TWO)
     val halfPi: BigDecimal = pi.divide(BigDecimal.TWO)
     val threeHalvesPi: BigDecimal = halfPi.multiply(BigDecimal("3"))
@@ -1709,7 +1707,7 @@ class SineTest {
 }
 
 class CosineTest {
-    val pi = getConstant("pi", mc64, 3)
+    val pi = getConstant("pi", mc64.precision + 3)
     val twoPi: BigDecimal = pi.multiply(BigDecimal.TWO)
     val halfPi: BigDecimal = pi.divide(BigDecimal.TWO)
     val threeHalvesPi: BigDecimal = halfPi.multiply(BigDecimal("3"))
@@ -1777,7 +1775,7 @@ class CosineTest {
 }
 
 class TangentTest {
-    val pi = getConstant("pi", mc64, 3)
+    val pi = getConstant("pi", mc64.precision + 3)
     val twoPi: BigDecimal = pi.multiply(BigDecimal.TWO)
     val halfPi: BigDecimal = pi.divide(BigDecimal.TWO)
     val threeHalvesPi: BigDecimal = halfPi.multiply(BigDecimal("3"))
@@ -1863,7 +1861,7 @@ class TangentTest {
 }
 
 class TrigonometricFunctionsTest {
-    val pi = getConstant("pi", mc64, 2)
+    val pi = getConstant("pi", mc64.precision + 2)
     val twoPi: BigDecimal = pi.multiply(BigDecimal.TWO)
     val halfPi: BigDecimal = pi.divide(BigDecimal.TWO)
     val threeHalvesPi: BigDecimal = halfPi.multiply(BigDecimal("3"))
@@ -2006,7 +2004,7 @@ class TrigonometricFunctionsTest {
 }
 
 class InverseTrigonometricFunctionsTest {
-    val pi = getConstant("pi", mathCtx)
+    val pi = getConstant("pi", mc32.precision + 1)
     val halfPi: BigDecimal = pi.divide(BigDecimal.TWO, mathCtx)
     val realRange = BigDecimal(-Double.MAX_VALUE)..BigDecimal(Double.MAX_VALUE)
 
@@ -2014,7 +2012,7 @@ class InverseTrigonometricFunctionsTest {
     fun `32 significant-figure asin`() {
         fun outOfDomain(): BigDecimal {
             val x = realRange.random()
-            return if (x.abs() <= BigDecimal.ONE) outOfDomain() else x
+            return if (abs(x) <= BigDecimal.ONE) outOfDomain() else x
         }
 
         assertEquals(-halfPi, asin(-BigDecimal.ONE))
@@ -2236,7 +2234,7 @@ class InverseTrigonometricFunctionsTest {
 }
 
 class TrigonometricIdentitiesTest {
-    val pi = getConstant("pi", mathCtx)
+    val pi = getConstant("pi", mc32.precision + 1)
     val twoPi: BigDecimal = pi.multiply(BigDecimal.TWO)
 
     @Test
@@ -2371,19 +2369,19 @@ class SpecialFunctionsTest {
         val ctx = MathContext(10) // 10-digit precision
 
         // Case-insensitive lookup
-        assertEquals(PI.round(ctx), getConstant("pi", ctx))
-        assertEquals(PI.round(ctx), getConstant("PI", ctx))
-        assertEquals(E.round(ctx), getConstant("e", ctx))
-        assertEquals(LOG_2.round(ctx), getConstant("Ln2", ctx))
+        assertEquals(PI.round(ctx), getConstant("pi", ctx.precision))
+        assertEquals(PI.round(ctx), getConstant("PI", ctx.precision))
+        assertEquals(E.round(ctx), getConstant("e", ctx.precision))
+        assertEquals(LOG_2.round(ctx), getConstant("Ln2", ctx.precision))
 
         // Different precision rounding
         val ctxHigh = MathContext(32)
-        assertEquals(PI.round(ctxHigh), getConstant("pi", ctxHigh))
-        assertNotEquals(getConstant("pi", ctx), getConstant("pi", ctxHigh))
+        assertEquals(PI.round(ctxHigh), getConstant("pi", ctxHigh.precision))
+        assertNotEquals(getConstant("pi", ctx.precision), getConstant("pi", ctxHigh.precision))
 
         // Throws when constant is not in Constants.kt
         assertThrows<IllegalStateException> {
-            getConstant("tau", ctx)
+            getConstant("tau", ctx.precision)
         }
     }
 
@@ -2469,7 +2467,7 @@ class SpecialFunctionsTest {
         val max = BigDecimal("1E+32")
         val sampleSize = 1_000
         val bucketsCount = 20
-        val random = SecureKotlinRandom.Companion.Instance
+        val random = SecureKotlinRandom.Instance
 
         fun generateSamples(
             min: BigDecimal,
