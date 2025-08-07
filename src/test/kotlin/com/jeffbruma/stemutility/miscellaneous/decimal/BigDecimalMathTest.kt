@@ -1702,7 +1702,6 @@ class SineTest {
             assertTrue(maximum < 50.milliseconds)
             assertTrue(average < 1.milliseconds)
         }
-
     }
 }
 

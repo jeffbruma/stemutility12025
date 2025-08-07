@@ -601,7 +601,6 @@ fun arcoth(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean 
 
 
 // Trigonometric Functions
-
 fun sin(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = true): BigDecimal {
     if (x.isNegative()) return -sin(-x, mathContext, rounding)
 
@@ -613,13 +612,7 @@ fun sin(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = t
     val halfPi = pi.multiply(BigDecimal(0.5))
     val twoPi = pi.multiply(BigDecimal.TWO)
 
-    val baseAngle = x.remainder(twoPi, internalMathContext).apply {
-        when {
-            this < tolerance || relativeEquals(this, twoPi, tolerance) -> BigDecimal.ZERO
-            this > pi -> this.subtract(twoPi)
-            this > halfPi -> this.subtract(pi)
-        }
-    }
+    val baseAngle = x.remainder(twoPi, internalMathContext)
     val signBaseAngle = baseAngle.sign
     val absBaseAngle = abs(baseAngle)
 
@@ -691,18 +684,23 @@ fun tan(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = t
     if (x.isNegative()) return -tan(-x, mathContext, rounding)
 
     val internalMathContext = MathContext(mathContext.precision + 3, mathContext.roundingMode)
-    val tolerance = BigDecimal.ONE.movePointLeft(internalMathContext.precision - 2)
+    val tolerance = BigDecimal.ONE.movePointLeft(internalMathContext.precision - 4)
 
     val pi = getConstant("pi", internalMathContext.precision + 1)
     val quarterPi = pi.multiply(BigDecimal("0.25"))
     val halfPi = pi.multiply(BigDecimal("0.5"))
     val twoPi = pi.multiply(BigDecimal.TWO)
 
-    val baseAngle = x.remainder(twoPi, internalMathContext)
+    val baseAngle = x.remainder(twoPi, internalMathContext).apply {
+        when {
+            this < tolerance || relativeEquals(this, twoPi, tolerance) -> BigDecimal.ZERO
+            this > pi -> this.subtract(pi)
+        }
+    }
 
-    if (baseAngle > pi) return tan(baseAngle.subtract(pi), mathContext, rounding)
+    val absBaseAngle = abs(baseAngle)
 
-    if (baseAngle < tolerance || relativeEquals(baseAngle, pi, tolerance)) return BigDecimal.ZERO
+    if (absBaseAngle < tolerance || relativeEquals(absBaseAngle, pi, tolerance)) return BigDecimal.ZERO
 
     if (relativeEquals(baseAngle, halfPi, tolerance)) throw ArithmeticException("Undefined: tangent of right angle $baseAngle")
 
@@ -720,7 +718,7 @@ fun tan(x: BigDecimal, mathContext: MathContext = mathCtx, rounding: Boolean = t
     } else {
         sineCore(halfPi.subtract(baseAngle), internalMathContext)
     }
-    val result = sinX.divide(cosX, internalMathContext)
+    val result = sinX.divide(cosX, internalMathContext) //.multiply(signBaseAngle)
 
     return if (rounding) result.roundAndStrip(mathContext) else result
 }

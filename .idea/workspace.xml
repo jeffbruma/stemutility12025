@@ -214,6 +214,8 @@
     "Gradle.SineTest.32 significant-figure sin.executor": "Run",
     "Gradle.SineTest.64 significant-figure sin.executor": "Run",
     "Gradle.SineTest.executor": "Run",
+    "Gradle.SineTest.sin of 5pi over 4.executor": "Run",
+    "Gradle.SineTest.sin of 7π over 4.executor": "Run",
     "Gradle.SineTest.sin performance.executor": "Run",
     "Gradle.SineTest.sin returns 0 at 0 or multiples of pi.executor": "Run",
     "Gradle.SineTest.sin returns 1 or -1 at odd multiples of half pi.executor": "Run",
@@ -261,11 +263,11 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "advanced.settings",
     "to.speed.mode.migration.done": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.CosineTest">
+  <component name="RunManager" selected="Gradle.SineTest">
     <configuration name="CosineTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -290,7 +292,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="CosineTest.cos returns 0 at odd multiples of half pi" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SineTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -303,7 +305,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.CosineTest.cos returns 0 at odd multiples of half pi&quot;" />
+            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.SineTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -314,7 +316,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="CosineTest.cos returns 1 or -1 at 0 or multiples of pi" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SineTest.sin of 5pi over 4" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -327,7 +329,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.CosineTest.cos returns 1 or -1 at 0 or multiples of pi&quot;" />
+            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.SineTest.sin of 5pi over 4&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -338,7 +340,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="CosineTest.cos returns with correct sign" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="SineTest.sin of 7π over 4" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -351,7 +353,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.CosineTest.cos returns with correct sign&quot;" />
+            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.SineTest.sin of 7π over 4&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -362,20 +364,37 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="BigDecimalMathKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.jeffbruma.stemutility.miscellaneous.decimal.BigDecimalMathKt" />
-      <module name="stemutility12025.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="TangentTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;com.jeffbruma.stemutility.miscellaneous.decimal.TangentTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.SineTest" />
+        <item itemvalue="Gradle.SineTest.sin of 7π over 4" />
+        <item itemvalue="Gradle.SineTest.sin of 5pi over 4" />
+        <item itemvalue="Gradle.TangentTest" />
         <item itemvalue="Gradle.CosineTest" />
-        <item itemvalue="Gradle.CosineTest.cos returns 1 or -1 at 0 or multiples of pi" />
-        <item itemvalue="Kotlin.BigDecimalMathKt" />
-        <item itemvalue="Gradle.CosineTest.cos returns 0 at odd multiples of half pi" />
-        <item itemvalue="Gradle.CosineTest.cos returns with correct sign" />
       </list>
     </recent_temporary>
   </component>
@@ -419,7 +438,23 @@
       <option name="project" value="LOCAL" />
       <updated>1754178044022</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fixed sine, cosine, and tangent functions">
+      <option name="closed" value="true" />
+      <created>1754514638266</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1754514638266</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Fixed sine, cosine, and tangent functions">
+      <option name="closed" value="true" />
+      <created>1754514811284</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1754514811284</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
